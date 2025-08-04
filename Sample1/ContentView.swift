@@ -12,13 +12,15 @@ struct ContentView: View {
     @StateObject var viewModel = ProductViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             if viewModel.productList.isEmpty {
                 ProgressView("loading...")
             } else {
                 List (viewModel.productList) { product in
-                    Text(product.title)
-                }
+                    NavigationLink(destination: ProductDetailsView(product: product)) {
+                        Text(product.title)
+                    }
+                }.navigationTitle("Products")
             }
         }
         .onAppear {

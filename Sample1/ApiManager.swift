@@ -5,6 +5,8 @@
 //  Created by Rajesh Yadav on 04/08/25.
 //
 
+// https://fakestoreapi.com/products
+
 import Foundation
 import Combine
 
@@ -16,7 +18,7 @@ class ApiManager {
     @Published var isDataSaved: Bool = false
 
     func getProductList() {
-        URLSession.shared.dataTaskPublisher(for: URL(string: "https://fakestoreapi.com/products")!)
+        URLSession.shared.dataTaskPublisher(for: URL(string: "http://localhost:3000/products")!)
             .map(\.data)
             .decode(type: [Product].self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)

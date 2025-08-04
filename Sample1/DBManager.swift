@@ -26,6 +26,7 @@ struct DBManager {
             cdProduct.title = product.title
             cdProduct.prodDesc = product.description
             cdProduct.price = product.price
+            cdProduct.image = product.image
             cdProduct.category = product.category
             
             let cdRating = CDRating(context: PersistenceController.shared.context)
