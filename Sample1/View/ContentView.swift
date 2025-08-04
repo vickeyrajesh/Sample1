@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    
     @StateObject var viewModel = ProductViewModel()
     
     var body: some View {

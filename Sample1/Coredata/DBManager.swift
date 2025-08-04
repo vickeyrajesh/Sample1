@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-struct DBManager {
+class DBManager {
     
     func saveData(products: [Product]) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CDProduct")

@@ -7,11 +7,11 @@
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="prodDesc" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="toRating" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRating"/>
+        <relationship name="toRating" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRating" inverseName="toProduct" inverseEntity="CDRating"/>
     </entity>
     <entity name="CDRating" representedClassName="CDRating" syncable="YES" codeGenerationType="class">
         <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="rate" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="toProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDProduct"/>
+        <relationship name="toProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDProduct" inverseName="toRating" inverseEntity="CDProduct"/>
     </entity>
 </model>

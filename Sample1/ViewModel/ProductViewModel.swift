@@ -10,11 +10,14 @@ import Combine
 
 class ProductViewModel: ObservableObject {
     @Published var productList: [Product] = []
-    let dbManager: DBManager = DBManager()
-    let apiManager: ApiManager = ApiManager()
+    var dbManager: DBManager
+    var apiManager: ApiManager
     private var cancellables = Set<AnyCancellable>()
 
-    init() {
+    init(dbManager: DBManager = DBManager(), apiManager: ApiManager = ApiManager()) {
+        self.dbManager = dbManager
+        self.apiManager = apiManager
+        
         apiManager.$isDataSaved
             .receive(on: DispatchQueue.main)
             .sink {  [weak self] _ in
@@ -22,7 +25,7 @@ class ProductViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+        
     func getAllItems() {
         if productList.isEmpty {
             apiManager.getProductList()
