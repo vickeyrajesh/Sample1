@@ -13,15 +13,38 @@ struct ContentView: View {
     @StateObject var viewModel = ProductViewModel()
     
     var body: some View {
-        NavigationStack {
-            if viewModel.productList.isEmpty {
-                ProgressView("loading...")
-            } else {
-                List (viewModel.productList) { product in
+        TabView {
+            NavigationStack {
+                if viewModel.productList.isEmpty {
+                    ProgressView("loading...")
+                } else {
+                    TabView {
+                        ForEach(viewModel.productList) { product in
+                            NavigationLink(destination: ProductDetailsView(product: product)) {
+                                ProductRowView(product: product)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                    .navigationTitle("Carousel")
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+                    .frame(height: 280)
+                }
+            }
+            .tabItem {
+                Label("Carousel", systemImage: "square.stack")
+            }
+            
+            NavigationStack {
+                List(viewModel.productList) { product in
                     NavigationLink(destination: ProductDetailsView(product: product)) {
                         Text(product.title)
                     }
-                }.navigationTitle("Products")
+                }
+                .navigationTitle("Product List")
+            }
+            .tabItem {
+                Label("List", systemImage: "list.bullet")
             }
         }
         .onAppear {
