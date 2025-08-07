@@ -14,35 +14,12 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            NavigationStack {
-                if viewModel.productList.isEmpty {
-                    ProgressView("loading...")
-                } else {
-                    TabView {
-                        ForEach(viewModel.productList) { product in
-                            NavigationLink(destination: ProductDetailsView(product: product)) {
-                                ProductRowView(product: product)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                    }
-                    .navigationTitle("Carousel")
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                    .frame(height: 280)
-                }
-            }
+            CourselView()
             .tabItem {
                 Label("Carousel", systemImage: "square.stack")
             }
             
-            NavigationStack {
-                List(viewModel.productList) { product in
-                    NavigationLink(destination: ProductDetailsView(product: product)) {
-                        Text(product.title)
-                    }
-                }
-                .navigationTitle("Product List")
-            }
+            ListView()
             .tabItem {
                 Label("List", systemImage: "list.bullet")
             }

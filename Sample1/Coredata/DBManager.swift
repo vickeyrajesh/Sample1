@@ -26,7 +26,7 @@ class DBManager {
             cdProduct.title = product.title
             cdProduct.prodDesc = product.description
             cdProduct.price = product.price
-            cdProduct.image = product.image
+            cdProduct.image = "https://json-server.dev/ai-profiles/99.png" //product.image
             cdProduct.category = product.category
             
             let cdRating = CDRating(context: PersistenceController.shared.context)
@@ -64,7 +64,7 @@ class DBManager {
     }
     
     private func convertToProductFromCDProduct(cdProduct: CDProduct) -> Product {
-        return Product(id: cdProduct.id, title: cdProduct.title ?? "", price: cdProduct.price, description: cdProduct.prodDesc ?? "", category: cdProduct.category ?? "", image: cdProduct.image ?? "", rating: convertToRatingFromCDRating(cdRating: cdProduct.toRating!))
+        return Product(id: cdProduct.id, title: cdProduct.title ?? "", price: cdProduct.price, description: cdProduct.prodDesc ?? "", category: cdProduct.category ?? "", image: "https://json-server.dev/ai-profiles/99.png", rating: convertToRatingFromCDRating(cdRating: cdProduct.toRating!))
     }
     
     private func convertToRatingFromCDRating(cdRating: CDRating) -> Rating {

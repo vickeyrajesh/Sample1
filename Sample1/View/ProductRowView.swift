@@ -14,7 +14,7 @@ struct ProductRowView: View {
             Text(product.title)
                 .padding()
             
-            AsyncImage(url: URL(string: "https://json-server.dev/ai-profiles/80.png")) { image in
+            AsyncImage(url: URL(string: product.image)) { image in
                 image
                     .resizable()
                     .scaledToFill()

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ProductDetailsView: View {
-    let product: Product?
+    let product: Product
     
     var body: some View {
         NavigationStack {
             
             VStack(alignment: .leading) {
-                AsyncImage(url: URL(string: product!.image)!) { image in
+                AsyncImage(url: URL(string: product.image)) { image in
                     image.resizable()
                 } placeholder: {
                     ProgressView()
@@ -22,16 +22,16 @@ struct ProductDetailsView: View {
                 .padding()
                 .frame(width: 300, height: 300)
                 
-                Text(product?.description ?? "")
+                Text(product.description)
                     .font(.subheadline)
-                Text(product?.category ?? "")
-                Text(String(format: "%.2f", product?.price ?? 0.0))
-                Text(String(format: "%.2f", product?.rating.rate ?? 0.0))
-                Text("Product Count: \(product?.rating.count ?? 0)")
+                Text(product.category)
+                Text(String(format: "%.2f", product.price))
+                Text(String(format: "%.2f", product.rating.rate))
+                Text("Product Count: \(product.rating.count)")
                 Spacer()
             }
             .padding()
-            .navigationTitle(product?.title ?? "aa")
+            .navigationTitle(product.title)
         }
     }
 }
